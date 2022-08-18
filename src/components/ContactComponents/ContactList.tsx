@@ -11,7 +11,7 @@ const ContactList: FC<ContactProps> = (props) => {
   return (
     <div>
       {props.contacts.map((contact) => (
-        <ContactItem key={contact.id} contacts={contact} />
+        <ContactItem key={contact.phone} contacts={contact} />
       ))}
     </div>
   );

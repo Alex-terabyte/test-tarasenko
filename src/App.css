@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;
+  width: 55%;
   border: 1px solid gray;
 }
 
@@ -24,4 +24,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.addButton {
+  width: min-content;
+  margin: 0.4rem;
+}
+.searchInput {
+  width: auto;
+
+  margin: 0.4rem;
 }

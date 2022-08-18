@@ -1,10 +1,8 @@
 export interface IContact {
-  id: number;
+  // id: number;
   name: string;
   username: string;
   email: string;
-  address: {};
   phone: string;
   website: string;
-  company: {};
 }
