@@ -32,6 +32,16 @@
 }
 .searchInput {
   width: auto;
+  margin: 0.4rem;
+}
 
+.card__buttons {
+  display: flex;
+  flex-direction: row;
+}
+.card__button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   margin: 0.4rem;
 }

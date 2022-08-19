@@ -5,7 +5,7 @@ import { Input, Typography, Button, Layout, Modal } from "antd";
 import ContactList from "./../components/ContactComponents/ContactList";
 import { IContact } from "./../models/IContact";
 import "../App.css";
-import ContactForm from "../components/ContactComponents/ContactForm";
+import AddContactForm from "../components/ContactComponents/AddContactForm";
 
 const Contacts: FC = () => {
   const { contacts } = useTypedselector((state) => state.contacts);
@@ -26,9 +26,7 @@ const Contacts: FC = () => {
   const addNewContact = (event: IContact) => {
     setModal(false);
     createContact(event);
-    console.log(contacts);
   };
-  console.log(contacts);
 
   return (
     <Layout>
@@ -53,7 +51,7 @@ const Contacts: FC = () => {
         footer={null}
         onCancel={() => setModal(false)}
       >
-        <ContactForm contacts={contacts} submit={addNewContact} />
+        <AddContactForm contacts={contacts} submit={addNewContact} />
       </Modal>
       <ContactList contacts={filteredContacts} />;
     </Layout>

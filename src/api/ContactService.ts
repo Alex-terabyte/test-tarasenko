@@ -6,7 +6,7 @@ export default class ContactService {
     return axios.get<IContact[]>("http://localhost:5000/contacts");
   }
   static async addContact(
-    // id: number,
+    id: number,
     name: string,
     username: string,
     email: string,
@@ -14,7 +14,7 @@ export default class ContactService {
     website: string
   ): Promise<AxiosResponse<IContact[]>> {
     return axios.post("http://localhost:5000/contacts", {
-      // id,
+      id,
       name,
       username,
       email,
@@ -23,7 +23,28 @@ export default class ContactService {
     });
   }
 
-  // static async putchContacts(): Promise<AxiosResponse<IContact[]>> {
-  //   return axios.putch<IContact[]>("http://localhost:5000/contacts");
-  // }
+  static async deleteContacts(id: number): Promise<AxiosResponse<IContact[]>> {
+    return axios.delete(`http://localhost:5000/contacts/${id}`);
+  }
+
+  static async editContacts(
+    id: number,
+    name: string,
+    username: string,
+    email: string,
+    phone: string,
+    website: string
+  ): Promise<AxiosResponse<IContact[]>> {
+    return axios.patch(
+      `http://localhost:5000/contacts/${id}`,
+      {
+        name,
+        username,
+        email,
+        phone,
+        website,
+      },
+      { headers: { "Content-Type": "application/json" } }
+    );
+  }
 }

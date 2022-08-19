@@ -1,27 +1,27 @@
-import React, { FC, useState } from "react";
-import { Button, Form, Input, Layout, Row } from "antd";
-import { IContact } from "./../../models/IContact";
+import { Button, Form, Input, InputNumber, Row } from "antd";
+import React, { FC, useEffect, useState } from "react";
+import { IContact } from "../../models/IContact";
 import { rules } from "../../utils/rules";
 
 interface ContactFormProps {
-  contacts: IContact[];
+  contacts: IContact;
   submit: (event: IContact) => void;
 }
 
-const ContactForm: FC<ContactFormProps> = (props) => {
+const EditContactForm: FC<ContactFormProps> = (props) => {
   const [contact, setContact] = useState<IContact>({
-    // id: 0,
-    name: "",
-    username: "",
-    email: "",
-    phone: "",
-    website: "",
+    id: props.contacts.id,
+    name: props.contacts.name,
+    username: props.contacts.username,
+    email: props.contacts.email,
+    phone: props.contacts.phone,
+    website: props.contacts.website,
   } as IContact);
 
   const submitForm = () => {
     props.submit({
       ...contact,
-      // id: contact.id,
+      id: contact.id,
       name: contact.name,
       username: contact.username,
       email: contact.email,
@@ -29,28 +29,9 @@ const ContactForm: FC<ContactFormProps> = (props) => {
       website: contact.website,
     });
   };
-
   return (
     <Form onFinish={submitForm}>
-      {/* <Form.Item
-        label="Id контакта"
-        name="id"
-        rules={[rules.required("Пожалуйста, введиет id > 10!")]}
-      >
-        <Input
-          onChange={(e) =>
-            setContact({ ...contact, id: Number(e.target.value) })
-          }
-          value={contact.id}
-          placeholder="Пожалуйста, введиет id id > 10"
-        />
-      </Form.Item> */}
-
-      <Form.Item
-        label="Имя контакта"
-        name="name"
-        rules={[rules.required("Пожалуйста, введиет имя!")]}
-      >
+      <Form.Item label="Имя контакта" name="name" initialValue={contact.name}>
         <Input
           id="1"
           onChange={(e) => setContact({ ...contact, name: e.target.value })}
@@ -62,7 +43,7 @@ const ContactForm: FC<ContactFormProps> = (props) => {
       <Form.Item
         label="Телефон контакта"
         name="phone"
-        rules={[rules.required("Пожалуйста, введиет телефон!")]}
+        initialValue={contact.phone}
       >
         <Input
           id="2"
@@ -72,7 +53,11 @@ const ContactForm: FC<ContactFormProps> = (props) => {
         />
       </Form.Item>
 
-      <Form.Item label="Ник контакта" name="username">
+      <Form.Item
+        label="Ник контакта"
+        name="username"
+        initialValue={contact.username}
+      >
         <Input
           id="3"
           onChange={(e) => setContact({ ...contact, username: e.target.value })}
@@ -84,7 +69,7 @@ const ContactForm: FC<ContactFormProps> = (props) => {
       <Form.Item
         label="Почта контакта"
         name="email"
-        // rules={[rules.required("Пожалуйста, введиет почту!")]}
+        initialValue={contact.email}
       >
         <Input
           onChange={(e) => setContact({ ...contact, email: e.target.value })}
@@ -96,7 +81,7 @@ const ContactForm: FC<ContactFormProps> = (props) => {
       <Form.Item
         label="Сайт контакта"
         name="site"
-        // rules={[rules.required("Пожалуйста, введиет сайт!")]}
+        initialValue={contact.website}
       >
         <Input
           onChange={(e) => setContact({ ...contact, website: e.target.value })}
@@ -108,7 +93,7 @@ const ContactForm: FC<ContactFormProps> = (props) => {
       <Row justify="end">
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Создать контакт
+            Изменить контакт
           </Button>
         </Form.Item>
       </Row>
@@ -116,4 +101,4 @@ const ContactForm: FC<ContactFormProps> = (props) => {
   );
 };
 
-export default ContactForm;
+export default EditContactForm;

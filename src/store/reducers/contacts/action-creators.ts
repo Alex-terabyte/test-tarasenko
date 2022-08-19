@@ -29,6 +29,7 @@ export const ContactActionCreators = {
     type: ContactActionEnum.DELETE_CONTACT,
     payload,
   }),
+
   createContact: (contact: IContact) => async (dispatch: AppDispatch) => {
     try {
       const contacts = "[]";
@@ -36,15 +37,38 @@ export const ContactActionCreators = {
       json.push(contact);
 
       dispatch(ContactActionCreators.addContact(json));
-      const addContact = await ContactService.addContact(
-        // contact.id,
+      await ContactService.addContact(
+        contact.id,
         contact.name,
         contact.username,
         contact.email,
         contact.phone,
         contact.website
       );
-      console.log("contacts - ", contacts, "json - ", json);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  deleteContactAsync: (id: number) => async (dispatch: AppDispatch) => {
+    try {
+      await ContactService.deleteContacts(id);
+      dispatch(ContactActionCreators.deleteContact(id));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  edeteContactAsync: (contact: IContact) => async (dispatch: AppDispatch) => {
+    try {
+      await ContactService.editContacts(
+        contact.id,
+        contact.name,
+        contact.username,
+        contact.email,
+        contact.phone,
+        contact.website
+      );
+      dispatch(ContactActionCreators.fetchContact());
     } catch (error) {
       console.log(error);
     }
