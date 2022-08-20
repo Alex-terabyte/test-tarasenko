@@ -4,7 +4,6 @@ import Contacts from "./../pages/Contacts";
 export interface IRoute {
   path: string;
   component: React.ComponentType;
-  exact?: boolean;
 }
 
 export enum RouteNames {
@@ -15,14 +14,12 @@ export enum RouteNames {
 export const publicRoutes: IRoute[] = [
   {
     path: RouteNames.LOGIN,
-    exact: true,
     component: Login,
   },
 ];
 export const privateRoutes: IRoute[] = [
   {
     path: RouteNames.CONTACTS,
-    exact: true,
     component: Contacts,
   },
 ];

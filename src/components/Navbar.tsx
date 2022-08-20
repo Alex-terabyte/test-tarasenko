@@ -19,7 +19,9 @@ const Navbar: FC = () => {
             </Menu>
           </>
         ) : (
-          <Menu theme="dark" mode="horizontal" selectable={false}></Menu>
+          <Menu theme="dark" mode="horizontal" selectable={false}>
+            <Menu.Item>Логин</Menu.Item>
+          </Menu>
         )}
       </Row>
     </Layout.Header>

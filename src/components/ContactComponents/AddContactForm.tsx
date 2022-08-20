@@ -40,7 +40,7 @@ const AddContactForm: FC<ContactFormProps> = (props) => {
         <InputNumber
           onChange={(e) => setContact({ ...contact, id: e })}
           value={contact.id}
-          placeholder="Пожалуйста, введиет id"
+          placeholder="Id"
         />
       </Form.Item>
 
